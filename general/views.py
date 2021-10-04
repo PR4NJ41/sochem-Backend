@@ -3,7 +3,7 @@ import json
 from decouple import config
 from rest_framework import viewsets, status
 from django.contrib.auth.models import User
-from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.decorators import api_view, authentication_classes, permission_classes, action
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
@@ -131,6 +131,18 @@ class UserExtensionViewSet(viewsets.ModelViewSet):
         user_details = UserExtension.objects.all().filter(user = request.GET['id'])
         serializer = UserExtensionSerializer(user_details, many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)
+
+    @action(detail=False, methods=['GET'])
+    def full_list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 
