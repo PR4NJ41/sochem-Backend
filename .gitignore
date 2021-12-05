@@ -6,6 +6,7 @@
 .LSOverride
 .env
 data.json
+start.cmd
 # Icon must end with two \r
 Icon
 

@@ -9,13 +9,14 @@ from django.http import HttpResponse
 from google.oauth2 import id_token
 from google.auth.transport import requests
 from .models import ForumPost, ForumComment, ForumReply, Events, UserExtension
+from decouple import config
 
 
 @api_view(['GET', 'POST'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([AllowAny])
 def auth(request):
-    CLIENT_ID = '210191010491-arcear3sgs4vbght2tke3ut0bo89566n.apps.googleusercontent.com'
+    CLIENT_ID = config('CLIENT_ID')
     token = request.data['token']
     try:
         final = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
