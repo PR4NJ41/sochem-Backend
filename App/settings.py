@@ -35,14 +35,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
-    "https://sochem.org",
-    "https://www.sochem.org",
-    "https://sochem.in",
-    "https://www.sochem.in",
-]
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:8000",
+#     "https://sochem.org",
+#     "https://www.sochem.org",
+#     "https://sochem.in",
+#     "https://www.sochem.in",
+# ]
 
 ROOT_URLCONF = 'App.urls'
 
