@@ -47,3 +47,11 @@ class UserExtension(models.Model):
     bio = models.CharField(max_length=100, default="No Bio Added")
     batch = models.CharField(max_length=10)
     profile_photo = models.TextField()
+
+
+class Family(models.Model):
+    name = models.CharField(max_length=40)
+    roll_no = models.IntegerField(blank=True,null=True)
+    email = models.EmailField()
+    batch = models.CharField(max_length=10)
+    house = models.CharField(max_length=20,blank=True,null=True)

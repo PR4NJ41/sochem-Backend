@@ -10,8 +10,46 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.http import HttpResponse
-from .models import ForumPost, ForumComment, ForumReply, Events, UserExtension
-from .serializers import ForumPostSerializer, UserSerializer, ForumCommentSerializer, ForumReplySerializer, EventsSerializer, UserExtensionSerializer
+from .models import ForumPost, ForumComment, ForumReply, Events, UserExtension, Family
+from .serializers import ForumPostSerializer, UserSerializer, ForumCommentSerializer, ForumReplySerializer, EventsSerializer, UserExtensionSerializer, FamilySerializer
+
+
+
+class FamilyViewSet(viewsets.ModelViewSet):
+    queryset = Family.objects.all().order_by('batch')
+    serializer_class = FamilySerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, )
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+    def create(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use POST method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    def retrieve(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use GET method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    def update(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use PUT method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    def destroy(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use DELETE method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
