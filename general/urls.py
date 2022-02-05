@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import ForumPostViewSet, ForumCommentViewSet, ForumReplyViewSet, UserViewSet, UserFromTokenViewSet, EventsViewSet, UserExtensionViewSet
+from .views import ForumPostViewSet, ForumCommentViewSet, ForumReplyViewSet, UserViewSet, UserFromTokenViewSet, EventsViewSet, UserExtensionViewSet, FamilyViewSet
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import commentCount, get_family
@@ -14,6 +14,7 @@ router.register('users', UserViewSet)
 router.register('user-from-token', UserFromTokenViewSet)
 router.register('events', EventsViewSet)
 router.register('user-extension', UserExtensionViewSet)
+router.register('family-list', FamilyViewSet)
 
 urlpatterns = [
    path('total-comments', commentCount),
