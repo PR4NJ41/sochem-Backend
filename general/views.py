@@ -10,8 +10,34 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.http import HttpResponse
-from .models import ForumPost, ForumComment, ForumReply, Events, UserExtension, Family
-from .serializers import ForumPostSerializer, UserSerializer, ForumCommentSerializer, ForumReplySerializer, EventsSerializer, UserExtensionSerializer, FamilySerializer
+from .models import *
+from .serializers import *
+
+
+
+class NotificationViewSet(viewsets.ModelViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication, )
+
+
+    def create(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use POST method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    def retrieve(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use GET method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    def update(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use PUT method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    def destroy(self, request, *args, **kwargs):
+        response = {'message': 'You can\'t use DELETE method like this'}
+        return Response(response, status=status.HTTP_406_NOT_ACCEPTABLE)
+
 
 
 

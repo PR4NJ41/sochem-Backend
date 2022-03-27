@@ -55,3 +55,8 @@ class Family(models.Model):
     email = models.EmailField()
     batch = models.CharField(max_length=10)
     house = models.CharField(max_length=20,blank=True,null=True)
+
+class Notification(models.Model):
+    title = models.CharField(max_length=200, blank=False)
+    description = models.TextField()
+    type = models.IntegerField(default=1)

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from .models import ForumPost, ForumComment, ForumReply, Events, UserExtension, Family
+from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -48,5 +48,10 @@ class UserExtensionSerializer(serializers.ModelSerializer):
 class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = Family
+        fields = '__all__'
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
         fields = '__all__'
 
