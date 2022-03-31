@@ -253,3 +253,58 @@ def get_family(request):
 @api_view(['GET'])
 def conf(request):
     return Response({"maintenance":False,"update":False,"app_version":"1.0"}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def onboarding(request):
+    return Response(
+        [
+            {
+                "title": "Title1",
+                "desc": "Desc1",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title2",
+                "desc": "Desc2",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title3",
+                "desc": "Desc3",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            }
+        ],
+        status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def home_carousel(request):
+    return Response(
+        [
+            {
+                "title": "Title1",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title2",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title3",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title4",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title5",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            },
+            {
+                "title": "Title6",
+                "img": "https://sochem.org/static/media/sochemlogo.93a3f8aa.png"
+            }
+        ],
+        status=status.HTTP_200_OK)

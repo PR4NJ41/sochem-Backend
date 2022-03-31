@@ -21,6 +21,8 @@ urlpatterns = [
    path('total-comments', commentCount),
    path('family', get_family),
    path('conf', conf),
+   path('onboarding', onboarding),
+   path('home_carousel', home_carousel),
    path('logup', auth),
    path('', include(router.urls)),
 ]
