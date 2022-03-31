@@ -247,3 +247,9 @@ def get_family(request):
         obj["user_id"] = final
         family.append(obj)
     return Response(family, status=status.HTTP_200_OK)
+
+
+
+@api_view(['GET'])
+def conf(request):
+    return Response({"maintenance":False,"update":False,"app_version":"1.0"}, status=status.HTTP_200_OK)

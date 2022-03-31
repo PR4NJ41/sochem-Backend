@@ -20,6 +20,7 @@ router.register('notifi', NotificationViewSet)
 urlpatterns = [
    path('total-comments', commentCount),
    path('family', get_family),
+   path('conf', conf),
    path('logup', auth),
    path('', include(router.urls)),
 ]
